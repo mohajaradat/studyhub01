@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#0b0f1f" />
+<title>StudyHub — منصة الطالب الذكية</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- ============ SVG ICON SPRITE ============ -->
+<svg style="display:none" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"/></symbol>
+  <symbol id="i-bell" viewBox="0 0 24 24"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></symbol>
+  <symbol id="i-user-plus" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6M22 11h-6"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></symbol>
+  <symbol id="i-folder" viewBox="0 0 24 24"><path d="M4 20a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h4l2 3h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2z"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9.5" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="m7 15 3-4 3 3 5-7"/></symbol>
+  <symbol id="i-clipboard" viewBox="0 0 24 24"><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/></symbol>
+  <symbol id="i-settings" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.6 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.6a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="i-upload" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m17 8-5-5-5 5"/><path d="M12 3v12"/></symbol>
+  <symbol id="i-msg" viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.9 8.9 0 0 1-4-.9L3 21l1.9-4.9A8.4 8.4 0 0 1 4 11.5 8.5 8.5 0 0 1 12.5 3 8.5 8.5 0 0 1 21 11.5z"/></symbol>
+  <symbol id="i-send" viewBox="0 0 24 24"><path d="M22 2 11 13"/><path d="M22 2l-7 20-4-9-9-4z"/></symbol>
+  <symbol id="i-back" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></symbol>
+  <symbol id="i-google" viewBox="0 0 24 24"><path d="M21.35 11.1H12v3.2h5.35c-.25 1.5-1.8 4.4-5.35 4.4a5.7 5.7 0 0 1 0-11.4c1.6 0 2.7.7 3.3 1.3l2.5-2.4A9 9 0 1 0 12 21c5.2 0 8.6-3.6 8.6-8.8 0-.6-.1-1-.25-1.1z"/></symbol>
+  <symbol id="i-file" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></symbol>
+  <symbol id="i-logout" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17 5-5-5-5"/><path d="M21 12H9"/></symbol>
+</svg>
+
+<!-- ============ BACKGROUND ORBS ============ -->
+<div class="orbs" aria-hidden="true">
+  <span class="orb orb-1"></span>
+  <span class="orb orb-2"></span>
+  <span class="orb orb-3"></span>
+</div>
+
+<!-- ============================================================
+     AUTH LAYER (شاشات 1-4)
+     ============================================================ -->
+<div id="authLayer" class="layer">
+
+  <!-- 1) تسجيل الدخول -->
+  <section class="screen auth-screen active" id="screen-login">
+    <div class="auth-card glass">
+      <div class="brand">
+        <div class="brand-logo">SH</div>
+        <div class="brand-txt"><h1>StudyHub</h1><p>منصة الطالب الذكية</p></div>
+      </div>
+      <h2 class="auth-title">تسجيل الدخول</h2>
+      <p class="auth-sub">مرحباً بعودتك 👋 سجّل دخولك للمتابعة</p>
+
+      <div class="field">
+        <label for="login-email">البريد الإلكتروني</label>
+        <input id="login-email" type="email" placeholder="name@example.com" value="ahmed@example.com" autocomplete="email" />
+      </div>
+
+      <div class="field">
+        <label for="login-pass">كلمة السر</label>
+        <div class="input-wrap">
+          <input id="login-pass" type="password" placeholder="••••••••" value="12345678" autocomplete="current-password" />
+          <button class="eye" type="button" data-action="toggle-pass" data-target="login-pass" aria-label="إظهار كلمة السر">👁</button>
+        </div>
+      </div>
+
+      <div class="row-between">
+        <label class="check"><input type="checkbox" checked /> <span>تذكرني</span></label>
+        <button class="link" type="button" data-action="forgot">نسيت كلمة السر؟</button>
+      </div>
+
+      <button class="btn btn-primary btn-block" type="button" data-action="login">دخول</button>
+
+      <div class="divider"><span>أو</span></div>
+
+      <button class="btn btn-ghost btn-block" type="button" data-action="google">
+        <svg class="icon"><use href="#i-google"/></svg>
+        <span>تسجيل عبر Google</span>
+      </button>
+
+      <p class="auth-foot">ليس لديك حساب؟
+        <button class="link" type="button" data-action="go-signup">إنشاء حساب جديد</button>
+      </p>
+    </div>
+  </section>
+
+  <!-- 2) إنشاء حساب -->
+  <section class="screen auth-screen" id="screen-signup">
+    <div class="auth-card glass">
+      <div class="brand">
+        <div class="brand-logo">SH</div>
+        <div class="brand-txt"><h1>StudyHub</h1><p>منصة الطالب الذكية</p></div>
+      </div>
+      <div class="steps">
+        <span class="step on"></span><span class="step"></span><span class="step"></span><span class="step"></span>
+      </div>
+      <h2 class="auth-title">إنشاء حساب جديد</h2>
+      <p class="auth-sub">انضم إلى آلاف الطلاب وابدأ بتنظيم دراستك</p>
+
+      <div class="field">
+        <label for="signup-email">البريد الإلكتروني</label>
+        <input id="signup-email" type="email" placeholder="name@example.com" />
+      </div>
+
+      <div class="field">
+        <label for="signup-pass">كلمة السر</label>
+        <div class="input-wrap">
+          <input id="signup-pass" type="password" placeholder="8 أحرف على الأقل" />
+          <button class="eye" type="button" data-action="toggle-pass" data-target="signup-pass" aria-label="إظهار كلمة السر">👁</button>
+        </div>
+        <div class="strength"><span id="passBar"></span></div>
+      </div>
+
+      <button class="btn btn-primary btn-block" type="button" data-action="signup-next">التالي</button>
+
+      <div class="divider"><span>أو</span></div>
+
+      <button class="btn btn-ghost btn-block" type="button" data-action="google">
+        <svg class="icon"><use href="#i-google"/></svg>
+        <span>تسجيل عبر Google</span>
+      </button>
+
+      <p class="auth-foot">لديك حساب بالفعل؟
+        <button class="link" type="button" data-action="go-login">تسجيل الدخول</button>
+      </p>
+    </div>
+  </section>
+
+  <!-- 3) إعداد الملف الشخصي -->
+  <section class="screen auth-screen" id="screen-setup1">
+    <div class="auth-card glass">
+      <div class="steps">
+        <span class="step done"></span><span class="step on"></span><span class="step"></span><span class="step"></span>
+      </div>
+      <h2 class="auth-title">إعداد الملف الشخصي</h2>
+      <p class="auth-sub">أخبرنا قليلاً عنك لتخصيص تجربتك</p>
+
+      <div class="avatar-uploader">
+        <div class="avatar-preview" id="avatarPreview">📷</div>
+        <div class="avatar-uploader-txt">
+          <strong>صورة الحساب الشخصي</strong>
+          <small>PNG أو JPG — حتى 2 ميجابايت</small>
+          <button class="btn btn-soft btn-sm" type="button" data-action="pick-avatar">
+            <svg class="icon"><use href="#i-upload"/></svg> اختيار صورة
+          </button>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="field">
+          <label for="setup-fname">الاسم الأول</label>
+          <input id="setup-fname" type="text" placeholder="أحمد" />
+        </div>
+        <div class="field">
+          <label for="setup-lname">اسم العائلة</label>
+          <input id="setup-lname" type="text" placeholder="المعمري" />
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="setup-bio">الوصف الشخصي (Bio)</label>
+        <textarea id="setup-bio" rows="3" placeholder="اكتب نبذة قصيرة عن اهتماماتك وأهدافك..."></textarea>
+      </div>
+
+      <div class="row-between gap">
+        <button class="btn btn-soft" type="button" data-action="go-signup">رجوع</button>
+        <button class="btn btn-primary" type="button" data-action="setup1-next">التالي</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4) المعلومات الأكاديمية -->
+  <section class="screen auth-screen" id="screen-setup2">
+    <div class="auth-card glass">
+      <div class="steps">
+        <span class="step done"></span><span class="step done"></span><span class="step on"></span><span class="step"></span>
+      </div>
+      <h2 class="auth-title">المعلومات الأكاديمية</h2>
+      <p class="auth-sub">بياناتك الأكاديمية تساعدنا في اقتراح المشاريع والزملاء</p>
+
+      <div class="field">
+        <label for="setup-univ">اسم الجامعة</label>
+        <input id="setup-univ" type="text" placeholder="جامعة الملك سعود" />
+      </div>
+
+      <div class="grid-2">
+        <div class="field">
+          <label for="setup-dept">القسم / الكلية</label>
+          <input id="setup-dept" type="text" placeholder="كلية علوم الحاسب" />
+        </div>
+        <div class="field">
+          <label for="setup-major">التخصص</label>
+          <input id="setup-major" type="text" placeholder="هندسة البرمجيات" />
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="setup-email">إيميل الجامعة</label>
+        <input id="setup-email" type="email" placeholder="s123456@university.edu.sa" />
+      </div>
+
+      <div class="field">
+        <label for="setup-hours">عدد الساعات المجتازة</label>
+        <input id="setup-hours" type="number" min="0" max="300" placeholder="78" />
+      </div>
+
+      <div class="row-between gap">
+        <button class="btn btn-soft" type="button" data-action="go-setup1">رجوع</button>
+        <button class="btn btn-primary" type="button" data-action="setup2-finish">إنهاء التسجيل</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ============================================================
+     APP LAYER (شاشات 5-15 + 17b)
+     ============================================================ -->
+<div id="appLayer" class="layer hidden">
+
+  <!-- HEADER -->
+  <header class="app-header glass">
+    <button class="icon-btn" type="button" data-action="toggle-sidebar" aria-label="القائمة">
+      <svg class="icon"><use href="#i-menu"/></svg>
+    </button>
+
+    <div class="head-user">
+      <div class="avatar avatar-sm" id="headAvatar">أ</div>
+      <div class="head-user-txt">
+        <strong id="headName">—</strong>
+        <div class="level-wrap">
+          <div class="level-chips">
+            <span class="chip-level on">1</span>
+            <span class="chip-level">2</span>
+            <span class="chip-level">3</span>
+          </div>
+          <div class="level-bar"><span id="headLevelFill" style="width:0%"></span></div>
+          <small id="headLevelTxt">المستوى 1 · 0%</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="head-actions">
+      <button class="pill-btn" type="button" data-action="open-search-projects">
+        <svg class="icon"><use href="#i-search"/></svg><span>بحث عن مشاريع</span>
+      </button>
+      <button class="pill-btn" type="button" data-action="open-add-friend">
+        <svg class="icon"><use href="#i-user-plus"/></svg><span>إضافة صديق</span>
+      </button>
+      <button class="pill-btn primary" type="button" data-action="open-add-project">
+        <svg class="icon"><use href="#i-plus"/></svg><span>مشروع جديد</span>
+      </button>
+      <button class="icon-btn badge-btn" type="button" data-action="open-notifications" aria-label="التنبيهات">
+        <svg class="icon"><use href="#i-bell"/></svg>
+        <i class="badge" id="notifBadge">0</i>
+      </button>
+    </div>
+  </header>
+
+  <div class="app-body">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar glass" id="sidebar">
+      <div class="sidebar-user">
+        <div class="avatar" id="sideAvatar">أ</div>
+        <div>
+          <strong id="sideName">—</strong>
+          <small id="sideMajor" class="muted">—</small>
+        </div>
+      </div>
+
+      <nav class="side-nav">
+        <button class="nav-item active" type="button" data-action="nav" data-screen="dashboard">
+          <svg class="icon"><use href="#i-home"/></svg><span>لوحة التحكم</span>
+        </button>
+        <button class="nav-item" type="button" data-action="nav" data-screen="projects">
+          <svg class="icon"><use href="#i-folder"/></svg><span>إدارة المشاريع</span>
+        </button>
+        <button class="nav-item" type="button" data-action="nav" data-screen="friends">
+          <svg class="icon"><use href="#i-users"/></svg><span>الأصدقاء</span>
+          <i class="nav-badge" id="navBadgeFriends">0</i>
+        </button>
+        <button class="nav-item" type="button" data-action="nav" data-screen="registry">
+          <svg class="icon"><use href="#i-book"/></svg><span>المواد</span>
+        </button>
+        <button class="nav-item" type="button" data-action="nav" data-screen="account">
+          <svg class="icon"><use href="#i-user"/></svg><span>إدارة الحساب</span>
+        </button>
+        <button class="nav-item" type="button" data-action="nav" data-screen="reports">
+          <svg class="icon"><use href="#i-chart"/></svg><span>التقارير</span>
+        </button>
+        <button class="nav-item" type="button" data-action="nav" data-screen="assignments">
+          <svg class="icon"><use href="#i-clipboard"/></svg><span>الواجبات</span>
+        </button>
+        <button class="nav-item" type="button" data-action="nav" data-screen="settings">
+          <svg class="icon"><use href="#i-settings"/></svg><span>الضبط</span>
+        </button>
+      </nav>
+
+      <button class="nav-item danger" type="button" data-action="logout">
+        <svg class="icon"><use href="#i-logout"/></svg><span>تسجيل الخروج</span>
+      </button>
+    </aside>
+    <div class="backdrop" id="sidebarBackdrop" data-action="close-sidebar"></div>
+
+    <!-- CONTENT -->
+    <main class="content" id="content">
+
+      <!-- 5) لوحة التحكم -->
+      <section class="screen active" id="screen-dashboard">
+        <div class="dash-grid">
+          <div class="dash-main">
+            <div class="page-head">
+              <div>
+                <h2>لوحة التحكم</h2>
+                <p class="muted" id="dashGreeting">نظرة سريعة على يومك الدراسي</p>
+              </div>
+            </div>
+
+            <div class="stats-row">
+              <div class="stat glass"><span>المواد الحالية</span><strong id="statSubjects">0</strong></div>
+              <div class="stat glass"><span>المشاريع</span><strong id="statProjects">0</strong></div>
+              <div class="stat glass"><span>واجبات قادمة</span><strong id="statTasks">0</strong></div>
+              <div class="stat glass"><span>الأصدقاء</span><strong id="statFriends">0</strong></div>
+            </div>
+
+            <div class="glass first-time" id="firstTimeBox">
+              <div class="ft-icon">📚</div>
+              <div class="ft-txt">
+                <h3>ابدأ بإدخال موادك الدراسية الحالية</h3>
+                <p class="muted">أضف المواد والشعب التي تدرسها هذا الفصل لتظهر كبطاقات في لوحة التحكم.</p>
+              </div>
+              <button class="btn btn-primary" type="button" data-action="open-add-subjects">
+                <svg class="icon"><use href="#i-plus"/></svg> إدخال المواد
+              </button>
+            </div>
+
+            <div class="section-title">
+              <h3>موادي الدراسية</h3>
+              <button class="link" type="button" data-action="open-add-subjects">+ إضافة مادة</button>
+            </div>
+
+            <div class="subjects-grid" id="subjectsGrid"></div>
+          </div>
+
+          <aside class="friends-rail glass">
+            <div class="rail-head">
+              <h3>الأصدقاء</h3>
+              <span class="muted">حسب آخر تفاعل</span>
+            </div>
+            <div class="rail-list" id="friendsRailList"></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- 6) تفاصيل المادة -->
+      <section class="screen" id="screen-subject">
+        <button class="back-btn" type="button" data-action="back-dashboard">
+          <svg class="icon"><use href="#i-back"/></svg> رجوع
+        </button>
+        <div class="glass subject-hero" id="subjectHero"></div>
+
+        <div class="section-title"><h3>أدوات المادة</h3></div>
+        <div class="tiles">
+          <button class="tile-btn glass" type="button" data-action="open-participants">
+            <span class="tile-ico">👥</span><span>المشاركين</span>
+          </button>
+          <button class="tile-btn glass" type="button" data-action="open-subject-assignments">
+            <span class="tile-ico">📝</span><span>الواجبات</span>
+          </button>
+          <button class="tile-btn glass" type="button" data-action="open-files">
+            <span class="tile-ico">📁</span><span>الملفات</span>
+          </button>
+        </div>
+
+        <div class="section-title"><h3>آخر الواجبات</h3></div>
+        <div class="list" id="subjectAssignmentsMini"></div>
+      </section>
+
+      <!-- 7) تسليم الواجب -->
+      <section class="screen" id="screen-assignment">
+        <button class="back-btn" type="button" data-action="back-subject">
+          <svg class="icon"><use href="#i-back"/></svg> رجوع للمادة
+        </button>
+
+        <div class="glass panel" id="assignmentHeader"></div>
+
+        <div class="glass panel">
+          <div class="section-title"><h3>تسليم الواجب</h3></div>
+
+          <div class="field">
+            <label>ملفات الحل</label>
+            <div class="dropzone" data-action="pick-assignment-file">
+              <svg class="icon"><use href="#i-upload"/></svg>
+              <strong>إضافة ملف</strong>
+              <small>اسحب الملف هنا أو اضغط للاختيار (PDF, ZIP, DOCX)</small>
+            </div>
+            <input type="file" id="assignmentFileInput" hidden multiple />
+            <div class="file-chips" id="assignmentFiles"></div>
+          </div>
+
+          <div class="field">
+            <label for="assignmentAnswer">إجابة نصية</label>
+            <textarea id="assignmentAnswer" rows="6" placeholder="اكتب شرحاً أو ملاحظات حول حلك هنا..."></textarea>
+          </div>
+
+          <div class="row-between gap">
+            <span class="muted" id="assignmentDue"></span>
+            <button class="btn btn-primary" type="button" data-action="submit-assignment">
+              <svg class="icon"><use href="#i-send"/></svg> إنهاء / إرسال
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- 8) المشاركون -->
+      <section class="screen" id="screen-participants">
+        <button class="back-btn" type="button" data-action="back-subject">
+          <svg class="icon"><use href="#i-back"/></svg> رجوع للمادة
+        </button>
+        <div class="page-head">
+          <div><h2>المشاركون في المادة</h2><p class="muted" id="participantsSub">—</p></div>
+        </div>
+        <div class="list" id="participantsList"></div>
+      </section>
+
+      <!-- 9) إدارة المشاريع -->
+      <section class="screen" id="screen-projects">
+        <div class="page-head">
+          <div><h2>إدارة المشاريع</h2><p class="muted">تابع جميع مشاريعك وحالتها</p></div>
+          <button class="btn btn-primary" type="button" data-action="open-add-project">
+            <svg class="icon"><use href="#i-plus"/></svg> مشروع جديد
+          </button>
+        </div>
+
+        <div class="chips-row" id="projectFilters">
+          <button class="chip-filter active" type="button" data-action="filter-projects" data-filter="all">الكل</button>
+          <button class="chip-filter" type="button" data-action="filter-projects" data-filter="active">قيد التنفيذ</button>
+          <button class="chip-filter" type="button" data-action="filter-projects" data-filter="review">قيد المراجعة</button>
+          <button class="chip-filter" type="button" data-action="filter-projects" data-filter="done">مكتمل</button>
+        </div>
+
+        <div class="list" id="projectsList"></div>
+      </section>
+
+      <!-- 10) الأصدقاء -->
+      <section class="screen" id="screen-friends">
+        <div class="page-head">
+          <div><h2>الأصدقاء</h2><p class="muted">أصدقاؤك وطلبات الصداقة المعلّقة</p></div>
+          <button class="btn btn-soft" type="button" data-action="open-add-friend">
+            <svg class="icon"><use href="#i-user-plus"/></svg> إضافة صديق
+          </button>
+        </div>
+
+        <div class="section-title"><h3>طلبات الصداقة المعلّقة</h3><span class="pill-count" id="reqCount">0</span></div>
+        <div class="list" id="requestsList"></div>
+
+        <div class="section-title"><h3>الأصدقاء الحاليون</h3><span class="pill-count" id="friendsCount">0</span></div>
+        <div class="list" id="friendsList"></div>
+      </section>
+
+      <!-- 11) سجل المواد -->
+      <section class="screen" id="screen-registry">
+        <div class="page-head">
+          <div><h2>المواد الدراسية</h2><p class="muted">سجل المواد الحالية والمكتملة</p></div>
+        </div>
+
+        <div class="chips-row">
+          <button class="chip-filter active" type="button" data-action="filter-registry" data-filter="all">الكل</button>
+          <button class="chip-filter" type="button" data-action="filter-registry" data-filter="current">الحالية</button>
+          <button class="chip-filter" type="button" data-action="filter-registry" data-filter="done">المكتملة</button>
+        </div>
+
+        <div class="table-wrap glass">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>المادة</th><th>الرمز</th><th>المدرّس</th><th>الساعات</th><th>التقدم</th><th>الحالة</th>
+              </tr>
+            </thead>
+            <tbody id="registryBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 12) إدارة الحساب -->
+      <section class="screen" id="screen-account">
+        <div class="page-head">
+          <div><h2>إدارة الحساب</h2><p class="muted">بياناتك وإحصائياتك</p></div>
+          <button class="btn btn-primary" type="button" data-action="save-account">حفظ التعديلات</button>
+        </div>
+
+        <div class="account-grid">
+          <div class="glass panel profile-card">
+            <div class="profile-avatar" id="accountAvatar">أ</div>
+            <h3 id="accountName">—</h3>
+            <p class="muted" id="accountMajor">—</p>
+            <div class="level-badge" id="accountLevel">المستوى 1</div>
+            <div class="stars">★★★★☆</div>
+            <button class="btn btn-soft btn-sm" type="button" data-action="pick-avatar">تغيير الصورة</button>
+          </div>
+
+          <div class="account-stats">
+            <div class="stat glass"><span>مشاريع مُسلّمة</span><strong id="accProjects">0</strong></div>
+            <div class="stat glass"><span>الالتزام بالمواعيد</span><strong id="accOnTime">0%</strong></div>
+            <div class="stat glass"><span>تقييم النشاط</span><strong id="accActivity">0%</strong></div>
+            <div class="stat glass"><span>عدد المتعاونين</span><strong id="accCollab">0</strong></div>
+          </div>
+
+          <div class="glass panel account-form">
+            <div class="grid-2">
+              <div class="field"><label for="acc-fname">الاسم الأول</label><input id="acc-fname" type="text" /></div>
+              <div class="field"><label for="acc-lname">اسم العائلة</label><input id="acc-lname" type="text" /></div>
+            </div>
+            <div class="field"><label for="acc-email">البريد الإلكتروني</label><input id="acc-email" type="email" /></div>
+            <div class="field"><label for="acc-univ">الجامعة</label><input id="acc-univ" type="text" /></div>
+            <div class="grid-2">
+              <div class="field"><label for="acc-dept">القسم</label><input id="acc-dept" type="text" /></div>
+              <div class="field"><label for="acc-major">التخصص</label><input id="acc-major" type="text" /></div>
+            </div>
+            <div class="grid-2">
+              <div class="field"><label for="acc-uniEmail">إيميل الجامعة</label><input id="acc-uniEmail" type="email" /></div>
+              <div class="field"><label for="acc-hours">الساعات المجتازة</label><input id="acc-hours" type="number" /></div>
+            </div>
+            <div class="field"><label for="acc-bio">الوصف الشخصي</label><textarea id="acc-bio" rows="3"></textarea></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 13) الواجبات العامة -->
+      <section class="screen" id="screen-assignments">
+        <div class="page-head">
+          <div><h2>الواجبات</h2><p class="muted">جميع الواجبات لكل المواد</p></div>
+        </div>
+
+        <div class="stats-row">
+          <div class="stat glass"><span>تم التسليم</span><strong id="asgSubmitted">0</strong></div>
+          <div class="stat glass"><span>قيد الانتظار</span><strong id="asgPending">0</strong></div>
+          <div class="stat glass"><span>متأخر</span><strong id="asgLate">0</strong></div>
+        </div>
+
+        <div class="chips-row">
+          <button class="chip-filter active" type="button" data-action="filter-assignments" data-filter="all">الكل</button>
+          <button class="chip-filter" type="button" data-action="filter-assignments" data-filter="pending">قيد الانتظار</button>
+          <button class="chip-filter" type="button" data-action="filter-assignments" data-filter="submitted">تم التسليم</button>
+          <button class="chip-filter" type="button" data-action="filter-assignments" data-filter="late">متأخر</button>
+        </div>
+
+        <div class="list" id="assignmentsList"></div>
+      </section>
+
+      <!-- 14) التقارير -->
+      <section class="screen" id="screen-reports">
+        <div class="page-head">
+          <div><h2>التقارير</h2><p class="muted">تحليل أدائك الأكاديمي</p></div>
+        </div>
+
+        <div class="stats-row">
+          <div class="stat glass"><span>المعدل العام</span><strong id="repGpa">4.62</strong></div>
+          <div class="stat glass"><span>نسبة الإنجاز</span><strong id="repDone">87%</strong></div>
+          <div class="stat glass"><span>ساعات الدراسة/أسبوع</span><strong id="repHours">21</strong></div>
+          <div class="stat glass"><span>ترتيب الدفعة</span><strong id="repRank">#14</strong></div>
+        </div>
+
+        <div class="reports-grid">
+          <div class="glass panel">
+            <div class="section-title"><h3>ساعات الدراسة الأسبوعية</h3></div>
+            <div class="chart" id="chartWeekly"></div>
+          </div>
+          <div class="glass panel">
+            <div class="section-title"><h3>الأداء حسب المادة</h3></div>
+            <div class="hbar-list" id="chartSubjects"></div>
+          </div>
+        </div>
+
+        <div class="glass panel">
+          <div class="section-title"><h3>ملخص النشاط</h3></div>
+          <div class="hbar-list" id="chartActivity"></div>
+        </div>
+      </section>
+
+      <!-- 15) الضبط -->
+      <section class="screen" id="screen-settings">
+        <div class="page-head">
+          <div><h2>الضبط</h2><p class="muted">إعدادات النظام والتكاملات</p></div>
+        </div>
+
+        <div class="glass panel">
+          <div class="section-title"><h3>الإعدادات العامة</h3></div>
+          <div class="setting-row">
+            <div><strong>الإشعارات الفورية</strong><small class="muted">استقبال تنبيهات الواجبات والمشاريع</small></div>
+            <label class="switch"><input type="checkbox" checked /><span></span></label>
+          </div>
+          <div class="setting-row">
+            <div><strong>الوضع الليلي</strong><small class="muted">مظهر داكن مريح للعين</small></div>
+            <label class="switch"><input type="checkbox" checked /><span></span></label>
+          </div>
+          <div class="setting-row">
+            <div><strong>إظهار ملفي للعامة</strong><small class="muted">يمكن للطلاب الآخرين رؤية مشاريعك</small></div>
+            <label class="switch"><input type="checkbox" /><span></span></label>
+          </div>
+          <div class="setting-row">
+            <div><strong>تنبيهات البريد الإلكتروني</strong><small class="muted">ملخص أسبوعي على بريدك الجامعي</small></div>
+            <label class="switch"><input type="checkbox" checked /><span></span></label>
+          </div>
+        </div>
+
+        <div class="glass panel">
+          <div class="section-title"><h3>ربط التطبيقات والأدوات</h3></div>
+          <div class="integrations" id="integrations"></div>
+        </div>
+      </section>
+
+      <!-- 17b) ملف شخص آخر -->
+      <section class="screen" id="screen-person">
+        <button class="back-btn" type="button" data-action="back-from-person">
+          <svg class="icon"><use href="#i-back"/></svg> رجوع
+        </button>
+        <div id="personContent"></div>
+      </section>
+
+    </main>
+  </div>
+</div>
+
+<!-- ============================================================
+     MODALS
+     ============================================================ -->
+<div class="modal-root" id="modalRoot">
+
+  <!-- 5.1) إضافة المواد -->
+  <div class="modal" id="modal-add-subjects">
+    <div class="modal-backdrop" data-action="close-modal" data-modal="modal-add-subjects"></div>
+    <div class="modal-card glass">
+      <div class="modal-head">
+        <h3>إدخال المواد الدراسية</h3>
+        <button class="icon-btn" type="button" data-action="close-modal" data-modal="modal-add-subjects"><svg class="icon"><use href="#i-x"/></svg></button>
+      </div>
+      <p class="muted mb">اختر المادة والشعبة، ويمكنك إضافة أكثر من مادة في نفس الوقت.</p>
+      <div class="subject-rows" id="subjectRows"></div>
+      <button class="btn btn-soft btn-block mt" type="button" data-action="add-subject-row">
+        <svg class="icon"><use href="#i-plus"/></svg> إضافة مادة أخرى
+      </button>
+      <div class="modal-foot">
+        <button class="btn btn-soft" type="button" data-action="close-modal" data-modal="modal-add-subjects">إلغاء</button>
+        <button class="btn btn-primary" type="button" data-action="save-subjects">تم</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 16) البحث عن مشروع -->
+  <div class="modal" id="modal-search-projects">
+    <div class="modal-backdrop" data-action="close-modal" data-modal="modal-search-projects"></div>
+    <div class="modal-card glass">
+      <div class="modal-head">
+        <h3>البحث عن مشاريع</h3>
+        <button class="icon-btn" type="button" data-action="close-modal" data-modal="modal-search-projects"><svg class="icon"><use href="#i-x"/></svg></button>
+      </div>
+
+      <div class="alert alert-warn">
+        <strong>⚠️ تنبيه هام</strong>
+        <p>يجب أن يكون الوصف دقيقاً — اكتب الكلمات المفتاحية بدقة للحصول على نتائج مطابقة لمشروعك.</p>
+      </div>
+
+      <div class="input-wrap mb">
+        <input type="text" id="projectSearchInput" placeholder="ابحث بالاسم، التقنية، أو المجال..." />
+        <button class="eye" type="button" data-action="run-project-search">🔍</button>
+      </div>
+
+      <div class="chips-row" id="searchTags">
+        <button class="chip-filter active" type="button" data-action="search-tag" data-tag="">الكل</button>
+        <button class="chip-filter" type="button" data-action="search-tag" data-tag="ويب">ويب</button>
+        <button class="chip-filter" type="button" data-action="search-tag" data-tag="ذكاء">ذكاء اصطناعي</button>
+        <button class="chip-filter" type="button" data-action="search-tag" data-tag="بيانات">بيانات</button>
+        <button class="chip-filter" type="button" data-action="search-tag" data-tag="موبايل">موبايل</button>
+      </div>
+
+      <div class="list scroll-area" id="projectSearchResults"></div>
+    </div>
+  </div>
+
+  <!-- 17) إضافة صديق -->
+  <div class="modal" id="modal-add-friend">
+    <div class="modal-backdrop" data-action="close-modal" data-modal="modal-add-friend"></div>
+    <div class="modal-card glass">
+      <div class="modal-head">
+        <h3>إضافة صديق</h3>
+        <button class="icon-btn" type="button" data-action="close-modal" data-modal="modal-add-friend"><svg class="icon"><use href="#i-x"/></svg></button>
+      </div>
+
+      <div class="input-wrap mb">
+        <input type="text" id="peopleSearchInput" placeholder="ابحث بالاسم أو التخصص..." />
+        <button class="eye" type="button" data-action="run-people-search">🔍</button>
+      </div>
+
+      <div class="list scroll-area" id="peopleResults"></div>
+    </div>
+  </div>
+
+  <!-- 18) إضافة مشروع جديد -->
+  <div class="modal" id="modal-add-project">
+    <div class="modal-backdrop" data-action="close-modal" data-modal="modal-add-project"></div>
+    <div class="modal-card glass">
+      <div class="modal-head">
+        <h3>إضافة مشروع جديد</h3>
+        <button class="icon-btn" type="button" data-action="close-modal" data-modal="modal-add-project"><svg class="icon"><use href="#i-x"/></svg></button>
+      </div>
+
+      <div class="field">
+        <label for="np-title">اسم المشروع</label>
+        <input id="np-title" type="text" placeholder="مثال: منصة تعليمية تفاعلية" />
+      </div>
+
+      <div class="field">
+        <label for="np-desc">وصف المشروع</label>
+        <div class="alert alert-warn compact">
+          <strong>⚠️ يجب أن يكون الوصف دقيقاً</strong>
+          <p>الوصف الدقيق يساعد النظام في اقتراح أدوات وشركاء مناسبين.</p>
+        </div>
+        <textarea id="np-desc" rows="5" placeholder="اشرح فكرة المشروع، المشكلة التي يحلها، والتقنيات المتوقعة..."></textarea>
+      </div>
+
+      <div class="field">
+        <label>ملفات المشروع</label>
+        <div class="dropzone" data-action="pick-project-file">
+          <svg class="icon"><use href="#i-upload"/></svg>
+          <strong>رفع ملف</strong>
+          <small>PDF، DOCX، ZIP، صورة — حتى 20 ميجابايت</small>
+        </div>
+        <input type="file" id="projectFileInput" hidden multiple />
+        <div class="file-chips" id="projectFiles"></div>
+      </div>
+
+      <div class="setting-row">
+        <div><strong>مشروع خاص</strong><small class="muted">لن يظهر في نتائج البحث العام</small></div>
+        <label class="switch"><input type="checkbox" id="np-private" /><span></span></label>
+      </div>
+
+      <div class="setting-row">
+        <div><strong>إظهار معلومات المشروع</strong><small class="muted">عرض التفاصيل والأدوات المستخدمة للآخرين</small></div>
+        <label class="switch"><input type="checkbox" id="np-showinfo" checked /><span></span></label>
+      </div>
+
+      <div class="modal-foot">
+        <button class="btn btn-soft" type="button" data-action="close-modal" data-modal="modal-add-project">إلغاء</button>
+        <button class="btn btn-primary" type="button" data-action="save-project">إنشاء المشروع</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 19) التنبيهات -->
+  <div class="modal" id="modal-notifications">
+    <div class="modal-backdrop" data-action="close-modal" data-modal="modal-notifications"></div>
+    <div class="modal-card glass narrow">
+      <div class="modal-head">
+        <h3>التنبيهات</h3>
+        <button class="icon-btn" type="button" data-action="close-modal" data-modal="modal-notifications"><svg class="icon"><use href="#i-x"/></svg></button>
+      </div>
+      <div class="list scroll-area" id="notificationsList"></div>
+      <div class="modal-foot">
+        <button class="btn btn-soft btn-block" type="button" data-action="clear-notifications">تحديد الكل كمقروء</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 20) مستكشف المشروع الذكي -->
+  <div class="modal" id="modal-explorer">
+    <div class="modal-backdrop" data-action="close-modal" data-modal="modal-explorer"></div>
+    <div class="modal-card glass wide">
+      <div class="modal-head">
+        <h3>🔎 مستكشف المشروع الذكي</h3>
+        <button class="icon-btn" type="button" data-action="close-modal" data-modal="modal-explorer"><svg class="icon"><use href="#i-x"/></svg></button>
+      </div>
+      <div id="explorerContent"></div>
+    </div>
+  </div>
+
+  <!-- ملفات المادة -->
+  <div class="modal" id="modal-files">
+    <div class="modal-backdrop" data-action="close-modal" data-modal="modal-files"></div>
+    <div class="modal-card glass narrow">
+      <div class="modal-head">
+        <h3>ملفات المادة</h3>
+        <button class="icon-btn" type="button" data-action="close-modal" data-modal="modal-files"><svg class="icon"><use href="#i-x"/></svg></button>
+      </div>
+      <div class="list" id="filesList"></div>
+    </div>
+  </div>
+
+  <!-- مراسلة -->
+  <div class="modal" id="modal-message">
+    <div class="modal-backdrop" data-action="close-modal" data-modal="modal-message"></div>
+    <div class="modal-card glass narrow">
+      <div class="modal-head">
+        <h3 id="msgTitle">مراسلة</h3>
+        <button class="icon-btn" type="button" data-action="close-modal" data-modal="modal-message"><svg class="icon"><use href="#i-x"/></svg></button>
+      </div>
+      <div class="field">
+        <label for="msgBody">نص الرسالة</label>
+        <textarea id="msgBody" rows="4" placeholder="اكتب رسالتك..."></textarea>
+      </div>
+      <div class="modal-foot">
+        <button class="btn btn-soft" type="button" data-action="close-modal" data-modal="modal-message">إلغاء</button>
+        <button class="btn btn-primary" type="button" data-action="send-message">
+          <svg class="icon"><use href="#i-send"/></svg> إرسال
+        </button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="toast-root" id="toastRoot"></div>
+<input type="file" id="avatarInput" accept="image/*" hidden />
+
+<script src="script.js"></script>
+<script src="script.js" type="module"></script>
+</body>
+</html>
